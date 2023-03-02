@@ -440,12 +440,13 @@ class Dome9(object):
     # ------------------ Assessments  ------------------
     # --------------------------------------------------
 
-    def run_assessment(self, rulesetId, cloudAccountId, region=None):
+    def run_assessment(self, rulesetId, cloudAccountId, cloudAccountType, region=None):
         """Run compliance assessments on Cloud Accounts, and get the results
 
         Args:
             rulesetId (str): Id of the Compliance Policy Ruleset to run
             cloudAccountId (str): Id of the Cloud Account
+            cloudAccountType (str): Type of the Cloud Account (Google, Aws, Azure, Kubernetes, ...)
             region (str, optional): Set a specific region. Defaults to None.
 
         Returns:
@@ -456,7 +457,8 @@ class Dome9(object):
         """
         bundle = {
             'id': rulesetId,
-            'CloudAccountId': cloudAccountId
+            'CloudAccountId': cloudAccountId,
+            'cloudAccountType': cloudAccountType
         }
         if region:
             bundle['region'] = region
